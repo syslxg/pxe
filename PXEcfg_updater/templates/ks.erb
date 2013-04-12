@@ -1,0 +1,27 @@
+accepteula
+
+# Set the root password for the DCUI and Tech Support Mode
+rootpw <%= esxi_pw %>
+
+clearpart --firstdisk --overwritevmfs
+#Part disk
+#install --firstdisk=local  --overwritevmfs
+install --firstdisk --overwritevmfs
+
+#Set the network to DHCP IP on the first network adapater
+#network --bootproto=dhcp --device=vmnic0
+network --bootproto=static --device=vmnic0 --ip=<%= ip %> --gateway=<%= esxi_gw %> --nameserver=<%= dns %> --netmask=<%= esxi_netmask %> --hostname=<%= hostname %> --addvmportgroup=1
+
+reboot
+%firstboot --interpreter=busybox
+
+#esxcli system hostname set --fqdn=A.localdomain
+#esxcli network ip dns search add --domain=localdomain
+#esxcli network ip dns server add --server=192.168.1.5
+#esxcli network ip dns server add --server=192.168.1.12
+
+# Enable SSH and the ESXi Shell
+vim-cmd hostsvc/enable_ssh
+vim-cmd hostsvc/start_ssh
+#vim-cmd hostsvc/enable_esx_shell
+#vim-cmd hostsvc/start_esx_shell

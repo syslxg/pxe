@@ -1,0 +1,12 @@
+DEFAULT menu.c32
+MENU TITLE ESXi-5 for <%= hostname %>
+NOHALT 1
+PROMPT 0
+TIMEOUT 30
+LABEL <%= os %>
+ KERNEL /<%= os %>/mboot.c32
+  APPEND -c /<%= bootcfg %>/boot_<%= server %>.cfg
+ MENU LABEL <%= os %>
+LABEL hddboot
+ LOCALBOOT 0x80
+ MENU LABEL ^Boot from local disk

@@ -1,0 +1,23 @@
+---
+env:
+  tftproot: /var/lib/tftpboot
+#  tftproot: /Users/garyliu/scripts/ruby/update_pxe_cfg/tftproot
+  ks:  ks
+  bootcfg: bootcfg
+  dns: 192.168.1.5
+  ks_host: http://192.168.1.5/ks
+  esxi_gw: 192.168.1.1
+  esxi_pw: 1234567
+  esxi_netmask: 255.255.255.0
+
+servers:
+  A:
+    hostname: A101
+    mac: 00-0c-29-ea-d8-3b
+    ip: 192.168.1.101
+    os: esxi5.1
+
+  B:
+    mac: 00-0c-29-30-b1-7a
+    ip: 192.168.1.102
+    os: esxi5.0
